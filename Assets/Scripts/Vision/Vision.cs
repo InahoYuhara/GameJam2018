@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Vision : MonoBehaviour
 {
-	GameObject player;
 	void Start ()
 	{
-		player = GameObject.FindGameObjectWithTag("Player");
+
 	}
 	
 	void Update()
