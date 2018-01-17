@@ -10,7 +10,6 @@ public class AntagMoving : MovingObject {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        Vector2 dir = new Vector2(m_MaxSpeed, 0f);
-        m_Rigidbody2D.MovePosition(m_Rigidbody2D.position + dir * Time.fixedDeltaTime);
+        m_Rigidbody2D.velocity = new Vector2(m_MaxSpeed, m_Rigidbody2D.velocity.y);
     }
 }

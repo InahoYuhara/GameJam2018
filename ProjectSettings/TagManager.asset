@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bucket
+  - Antag
   layers:
   - Default
   - TransparentFX
@@ -14,8 +15,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Player&Traps
+  - VisionCone&Antag&PowerUps
   - 
   - 
   - 
@@ -44,6 +45,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 2821258647
+    locked: 0
+  - name: Antag
+    uniqueID: 1352504365
     locked: 0
   - name: Player
     uniqueID: 602900943
