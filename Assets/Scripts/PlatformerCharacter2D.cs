@@ -110,6 +110,7 @@ public class PlatformerCharacter2D : MovingObject
             // Add a vertical force to the player.
             m_Grounded = false;
             m_Anim.SetBool("Ground", false);
+            m_Anim.SetTrigger("Jump");
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
         }
     }
@@ -120,8 +121,8 @@ public class PlatformerCharacter2D : MovingObject
         // Switch the way the player is labelled as facing.
         m_FacingRight = !m_FacingRight;
 
-        for(int i = 0; i<3;i++)
-            playerGraphics[i].GetComponent<SpriteRenderer>().flipX = !playerGraphics[i].GetComponent<SpriteRenderer>().flipX;
+        /*for(int i = 0; i<3;i++)
+            playerGraphics[i].GetComponent<SpriteRenderer>().flipX = !playerGraphics[i].GetComponent<SpriteRenderer>().flipX;*/
 
         // Multiply the player's x local scale by -1.
         /*Vector3 theScale = playerGraphics.localScale;

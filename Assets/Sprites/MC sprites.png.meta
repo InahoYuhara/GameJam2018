@@ -1,12 +1,14 @@
 fileFormatVersion: 2
-guid: 46a452dd712bf7a4ea1282941280b9c5
-timeCreated: 1516198037
+guid: 373a86e949124ba4697048a87f9daab1
+timeCreated: 1516199527
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: MC sprites_0
     21300002: MC sprites_1
     21300004: MC sprites_2
+    21300006: MC sprites_3
+    21300008: MC sprites_4
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -91,7 +93,7 @@ TextureImporter:
         width: 43
         height: 62
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -101,11 +103,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 43
-        y: 0
+        y: 40
         width: 43
-        height: 62
-      alignment: 9
-      pivot: {x: 0.5, y: 0.71}
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -115,11 +117,39 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 86
+        y: 46
+        width: 43
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC sprites_3
+      rect:
+        serializedVersion: 2
+        x: 43
         y: 0
         width: 43
-        height: 62
+        height: 8
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC sprites_4
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 0
+        width: 43
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
