@@ -4,24 +4,18 @@ using UnityEngine;
 
 public class Vision : MonoBehaviour
 {
-	GameObject[] BlackObjects;
-
+	GameObject player;
 	void Start ()
 	{
-		BlackObjects = GameObject.FindGameObjectsWithTag("BlackObject");
+		player = GameObject.FindGameObjectWithTag("Player");
 	}
-
+	
 	void Update()
 	{
-		
-	}
-
-	void FixedUpdate()
-	{
-		/*Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-		BlackObjects[0].transform.rotation = new Quaternion(ray.direction.x, ray.direction.y, ray.direction.z, 0);
-		BlackObjects[1].transform.rotation = new Quaternion(ray.direction.x, -ray.direction.y, ray.direction.z, 0);*/
+		Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
+		Vector3 dir = Input.mousePosition - pos;
+		float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+		transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 	}
 
 	void OnTriggerEnter2D(Collider2D coll)
