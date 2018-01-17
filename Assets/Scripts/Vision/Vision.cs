@@ -11,14 +11,22 @@ public class Vision : MonoBehaviour
 	public bool AntagFocused = false;
 	public bool powerupFocused = false;
 
-	void Update()
+    private PlatformerCharacter2D playerScript;
+
+    private void Start()
+    {
+        playerScript = GetComponentInParent<PlatformerCharacter2D>();
+    }
+
+    void Update()
 	{
 		// Rotate the vision cone
 		Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
 		Vector3 dir = Input.mousePosition - pos;
 		float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 		transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        if(Math.Abs(angle) > 90)
+
+        if (Math.Abs(angle) > 90)
         {
             if (playerScript.m_FacingRight)
             {
@@ -33,7 +41,6 @@ public class Vision : MonoBehaviour
             }
         }
 		
-		// 
 	}
 
 	void OnTriggerEnter2D(Collider2D col)
