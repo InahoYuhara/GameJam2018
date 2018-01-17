@@ -115,5 +115,19 @@ public class PlatformerCharacter2D : MovingObject
         theScale.x *= -1;
         playerGraphics.localScale = theScale;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Bucket")
+        {
+            Debug.Log("Hit bucket");
+            if (!speedChanged)
+            {
+                Debug.Log("Slowdown");
+                StartCoroutine(ChangeSpeedFor(0.75f * m_MaxSpeed, 2f));
+            }
+            Destroy(collision.gameObject);
+        }
+    }
 }
 

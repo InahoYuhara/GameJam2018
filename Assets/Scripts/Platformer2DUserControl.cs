@@ -35,15 +35,5 @@ public class Platformer2DUserControl : MonoBehaviour
         m_Character.Move(h, crouch, m_Jump);
         m_Jump = false;
     }
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Bucket")
-        {
-            Destroy(collision.gameObject);
-        }
-    }
-
 }
 
