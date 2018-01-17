@@ -8,6 +8,7 @@ TagManager:
   - Antag
   - Bucket
   - WetFloorSign
+  - PowerUps
   layers:
   - Default
   - TransparentFX
