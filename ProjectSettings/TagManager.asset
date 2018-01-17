@@ -50,12 +50,12 @@ TagManager:
   - name: Antag
     uniqueID: 445598551
     locked: 0
+  - name: VisionConeBlack
+    uniqueID: 111931725
+    locked: 0
   - name: Player
     uniqueID: 2086605995
     locked: 0
   - name: Items
     uniqueID: 2517982223
-    locked: 0
-  - name: VisionConeBlack
-    uniqueID: 111931725
     locked: 0

@@ -121,13 +121,12 @@ public class PlatformerCharacter2D : MovingObject
         // Switch the way the player is labelled as facing.
         m_FacingRight = !m_FacingRight;
 
-        for(int i = 0; i<3;i++)
+        for(int i = 0; i<2;i++)
+        {
             playerGraphics[i].GetComponent<SpriteRenderer>().flipX = !playerGraphics[i].GetComponent<SpriteRenderer>().flipX;
-
+        }
         // Multiply the player's x local scale by -1.
-        /*Vector3 theScale = playerGraphics.localScale;
-        theScale.x *= -1;
-        playerGraphics.localScale = theScale;*/
+       
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
