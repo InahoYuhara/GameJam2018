@@ -21,13 +21,11 @@ public class MovingObject : MonoBehaviour {
 
     public IEnumerator ChangeSpeedFor(float newMaxSpeed, float time)
     {
-        Debug.Log("Speed change start");
         float oldSpeed = m_MaxSpeed;
         speedChanged = true;
         m_MaxSpeed = newMaxSpeed;
         yield return new WaitForSeconds(time);
         m_MaxSpeed = oldSpeed;
         speedChanged = false;
-        Debug.Log("Speed returned");
     }
 }
