@@ -143,6 +143,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
+--- !u!4 &323462557 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4976239939687332, guid: b365963a2d65ded4c82bd13b08bd5bf1,
+    type: 2}
+  m_PrefabInternal: {fileID: 1810112264}
 --- !u!1001 &508193171
 Prefab:
   m_ObjectHideFlags: 0
@@ -322,7 +327,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &661013901
 MonoBehaviour:
@@ -335,16 +340,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8238cc53530b64fbb7828c3d3bb591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 681131019}
+  target: {fileID: 323462557}
   damping: 0.1
   lookAheadFactor: 5
   lookAheadReturnSpeed: 0.5
   lookAheadMoveThreshold: 0.1
---- !u!4 &681131019 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4532553644026816, guid: b365963a2d65ded4c82bd13b08bd5bf1,
-    type: 2}
-  m_PrefabInternal: {fileID: 1810112264}
 --- !u!1001 &780525732
 Prefab:
   m_ObjectHideFlags: 0
@@ -706,23 +706,6 @@ Prefab:
     - {fileID: 114240319923347250, guid: b365963a2d65ded4c82bd13b08bd5bf1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: b365963a2d65ded4c82bd13b08bd5bf1, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1910880110 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1005026191195810, guid: b365963a2d65ded4c82bd13b08bd5bf1,
-    type: 2}
-  m_PrefabInternal: {fileID: 1810112264}
---- !u!114 &1910880113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1910880110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6736bf4850471b044a6e36a504feb282, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxAngle: 50
 --- !u!1001 &1956247836
 Prefab:
   m_ObjectHideFlags: 0
