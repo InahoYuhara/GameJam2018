@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
 guid: bc2b67129a46ee849974e814d9fc772b
-timeCreated: 1516177256
-=======
-guid: 63c1136f3bff0764ca0e278cad9a8b23
-timeCreated: 1516178136
->>>>>>> Stashed changes
-licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -18,6 +11,7 @@ ModelImporter:
     2300000: test_mesh_0001
     3300000: test_mesh_0001
     4300000: test_mesh_0001
+    9500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -92,7 +86,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

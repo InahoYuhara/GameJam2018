@@ -1,0 +1,8 @@
+diff a/Assets/Tiled2Unity/Meshes/FirstLevel/FirstLevel_mesh_0001.obj.meta b/Assets/Tiled2Unity/Meshes/FirstLevel/FirstLevel_mesh_0001.obj.meta	(rejected hunks)
+@@ -1,5 +1,6 @@
+ fileFormatVersion: 2
+ guid: c52b9d4e9ea17594e88d4aafc5ec324f
++<<<<<<< Updated upstream
+ timeCreated: 1516177132
+ =======
+ timeCreated: 1516177812
