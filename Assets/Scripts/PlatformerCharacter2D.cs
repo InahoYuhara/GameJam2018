@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 //Unity Standard assets
 
@@ -16,9 +17,9 @@ public class PlatformerCharacter2D : MovingObject
     private Transform m_CeilingCheck;   // A position marking where to check for ceilings
     const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
     private Animator m_Anim;            // Reference to the player's animator component.
-    private bool m_FacingRight = true;  // For determining which way the player is currently facing.
+    public bool m_FacingRight = true;  // For determining which way the player is currently facing.
 
-    Transform[] playerGraphics = new Transform[3];
+    Transform[] playerGraphics = new Transform[5];
 
     private void Awake()
     {
@@ -29,7 +30,10 @@ public class PlatformerCharacter2D : MovingObject
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         playerGraphics[0] = transform.Find("Coat");
         playerGraphics[1] = transform.Find("Coat2");
-        playerGraphics[2] = transform.Find("Head");
+        playerGraphics[2] = transform.Find("Left Feet");
+        playerGraphics[3] = transform.Find("Right Feet");
+        playerGraphics[4] = transform.Find("Head");
+
         if (playerGraphics[0] == null)
         {
             Debug.LogError("Error: Main character's coat can't be found!");
@@ -39,6 +43,14 @@ public class PlatformerCharacter2D : MovingObject
             Debug.LogError("Error: Main character's coat2 can't be found!");
         }
         if (playerGraphics[2] == null)
+        {
+            Debug.LogError("Error: Main character's left feet can't be found!");
+        }
+        if (playerGraphics[3] == null)
+        {
+            Debug.LogError("Error: Main character's right feet can't be found!");
+        }
+        if (playerGraphics[4] == null)
         {
             Debug.LogError("Error: Main character's head can't be found!");
         }
@@ -89,20 +101,8 @@ public class PlatformerCharacter2D : MovingObject
             m_Anim.SetFloat("Speed", Mathf.Abs(move));
 
             // Move the character
-            m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed, m_Rigidbody2D.velocity.y);
+            m_Rigidbody2D.velocity = new Vector2(move * currentSpeed, m_Rigidbody2D.velocity.y);
 
-            // If the input is moving the player right and the player is facing left...
-            if (move > 0 && !m_FacingRight)
-            {
-                // ... flip the player.
-                Flip();
-            }
-            // Otherwise if the input is moving the player left and the player is facing right...
-            else if (move < 0 && m_FacingRight)
-            {
-                // ... flip the player.
-                Flip();
-            }
         }
         // If the player should jump...
         if (m_Grounded && jump && m_Anim.GetBool("Ground"))
@@ -110,35 +110,55 @@ public class PlatformerCharacter2D : MovingObject
             // Add a vertical force to the player.
             m_Grounded = false;
             m_Anim.SetBool("Ground", false);
-            //m_Anim.SetTrigger("Jump");
+            m_Anim.SetTrigger("Jump");
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
         }
     }
 
 
-    private void Flip()
+    public void Flip()
     {
         // Switch the way the player is labelled as facing.
         m_FacingRight = !m_FacingRight;
 
-        for(int i = 0; i<2;i++)
-        {
+        for (int i = 0; i < 4; i++)
             playerGraphics[i].GetComponent<SpriteRenderer>().flipX = !playerGraphics[i].GetComponent<SpriteRenderer>().flipX;
-        }
+        GetComponent<Animator>().transform.Rotate(0, 180, 0);
+
         // Multiply the player's x local scale by -1.
-       
+        for (int i = 0; i < 4; i++)
+        {
+            Vector3 theScale = playerGraphics[i].localScale;
+            theScale.x *= -1;
+            playerGraphics[i].localScale = theScale;
+        }
+
+        playerGraphics[playerGraphics.Length - 1].GetComponent<SpriteRenderer>().flipY = !playerGraphics[playerGraphics.Length - 1].GetComponent<SpriteRenderer>().flipY;
+    }
+
+    private void CheckObstacle(Collider2D collision)
+    {
+        float slowDownFactor = 0;
+        switch(collision.tag)
+        {
+            case "Bucket":
+                slowDownFactor = 0.25f;
+                break;
+            case "WetFloorSign":
+                slowDownFactor = 0.50f;
+                break;
+        }
+
+        if (slowDownFactor != 0)
+        {
+            Destroy(collision.gameObject);
+            StartCoroutine(ChangeSpeedForObstacle(1 - slowDownFactor, 2f));
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Bucket")
-        {
-            if (!speedChanged)
-            {
-                StartCoroutine(ChangeSpeedFor(0.75f * m_MaxSpeed, 2f));
-            }
-            Destroy(collision.gameObject);
-        }
+        CheckObstacle(collision);
     }
 }
 

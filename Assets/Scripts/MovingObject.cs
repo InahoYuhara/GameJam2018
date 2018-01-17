@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class MovingObject : MonoBehaviour {
 
-    public float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
-    [System.NonSerialized] public bool speedChanged;
+    [SerializeField] public float m_MaxSpeed = 10;                   // The fastest the player can travel in the x axis.
+    [SerializeField] protected float currentSpeed;
     protected Rigidbody2D m_Rigidbody2D;
+    private int numOfSlowdowns;
 
     // Use this for initialization
     void Start () {
-        speedChanged = false;
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
+        currentSpeed = m_MaxSpeed;
+        numOfSlowdowns = 0;
 	}
 	
 	// Update is called once per frame
@@ -19,13 +21,20 @@ public class MovingObject : MonoBehaviour {
 		
 	}
 
-    public IEnumerator ChangeSpeedFor(float newMaxSpeed, float time)
+    public IEnumerator ChangeSpeedForTime(float speedFactor, float time)
     {
-        float oldSpeed = m_MaxSpeed;
-        speedChanged = true;
-        m_MaxSpeed = newMaxSpeed;
+        currentSpeed *= speedFactor;
         yield return new WaitForSeconds(time);
-        m_MaxSpeed = oldSpeed;
-        speedChanged = false;
+        currentSpeed = m_MaxSpeed;
+    }
+
+    public IEnumerator ChangeSpeedForObstacle(float speedFactor, float time)
+    {
+        numOfSlowdowns++;
+        currentSpeed *= speedFactor;
+        yield return new WaitForSeconds(time);
+        numOfSlowdowns--;
+        if(numOfSlowdowns == 0)
+            currentSpeed = m_MaxSpeed;
     }
 }
