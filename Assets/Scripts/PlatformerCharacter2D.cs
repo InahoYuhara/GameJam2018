@@ -18,7 +18,7 @@ public class PlatformerCharacter2D : MovingObject
     private Animator m_Anim;            // Reference to the player's animator component.
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 
-    Transform playerGraphics;
+    Transform[] playerGraphics = new Transform[3];
 
     private void Awake()
     {
@@ -27,10 +27,20 @@ public class PlatformerCharacter2D : MovingObject
         m_CeilingCheck = transform.Find("CeilingCheck");
         m_Anim = GetComponent<Animator>();
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
-        playerGraphics = transform.Find("Graphics");
-        if (playerGraphics == null)
+        playerGraphics[0] = transform.Find("Coat");
+        playerGraphics[1] = transform.Find("Coat2");
+        playerGraphics[2] = transform.Find("Head");
+        if (playerGraphics[0] == null)
         {
-            Debug.LogError("no graphic");
+            Debug.LogError("Error: Main character's coat can't be found!");
+        }
+        if (playerGraphics[1] == null)
+        {
+            Debug.LogError("Error: Main character's coat2 can't be found!");
+        }
+        if (playerGraphics[2] == null)
+        {
+            Debug.LogError("Error: Main character's head can't be found!");
         }
     }
 
@@ -110,10 +120,13 @@ public class PlatformerCharacter2D : MovingObject
         // Switch the way the player is labelled as facing.
         m_FacingRight = !m_FacingRight;
 
+        for(int i = 0; i<3;i++)
+            playerGraphics[i].GetComponent<SpriteRenderer>().flipX = !playerGraphics[i].GetComponent<SpriteRenderer>().flipX;
+
         // Multiply the player's x local scale by -1.
-        Vector3 theScale = playerGraphics.localScale;
+        /*Vector3 theScale = playerGraphics.localScale;
         theScale.x *= -1;
-        playerGraphics.localScale = theScale;
+        playerGraphics.localScale = theScale;*/
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
