@@ -16,13 +16,16 @@ public class Vision : MonoBehaviour
 		
 	}
 
-	void OnTriggerEnter2D(Collider2D coll)
+	void OnTriggerStay2D(Collider2D col)
 	{
-		
-	}
-
-	void OnTriggerExit2D(Collider2D coll)
-	{
-		
+		string tagname = col.gameObject.tag;
+		if (tagname == "Bucket")
+		{
+			Debug.Log("A Bucket");
+		}
+		else if (tagname == "Antag")
+		{
+			Debug.Log("The Antogonist");
+		}
 	}
 }
