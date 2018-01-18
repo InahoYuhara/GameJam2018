@@ -43,18 +43,45 @@ public class Vision : MonoBehaviour
 
     }
 
-    public void ChangeVisionAngle(float angle)
+    public void ChangeHitBoxVision(float angle)
     {
         GameObject head = GameObject.Find("Head");
 
         head.GetComponent<PolygonCollider2D>().points = new Vector2[] { new Vector2(0, 0), new Vector2(8f, Convert.ToSingle((180 / Math.PI) * Mathf.Tan(angle / 2) * 8f)), new Vector2(8f, -(Convert.ToSingle((180 / Math.PI) * Mathf.Tan(angle / 2) * 8f))) };
+    }
+
+    public void ChangeVisionAngle(float angle)
+    {
+        ChangeHitBoxVision(angle);
 
         GameObject[] blackObjects = GameObject.FindGameObjectsWithTag("BlackObj");
 
         blackObjects[0].transform.rotation = Quaternion.AngleAxis(-(angle / 2), Vector3.forward);
         blackObjects[1].transform.rotation = Quaternion.AngleAxis(angle / 2, Vector3.forward);
-
     }
+
+    /*public void ChangeVisionAngleSmooth(float angle)
+    {
+        StartCoroutine(ChangeVisionAngleSmoothIE(angle));
+    }
+
+    private IEnumerator ChangeVisionAngleSmoothIE(float angle)
+    {
+        ChangeHitBoxVision(angle);
+        GameObject[] blackObjects = GameObject.FindGameObjectsWithTag("BlackObj");
+        float timeSinceStart = 0f;
+
+        while (blackObjects[0].transform.rotation.z <= -angle/2 - 1 && blackObjects[0].transform.rotation.z >= -angle / 2 + 1 && blackObjects[1].transform.rotation.z >= angle/2 - 1 && blackObjects[1].transform.rotation.z >= angle / 2 - 1)
+        {
+            Debug.Log(blackObjects[0].transform.localEulerAngles);
+            Debug.Log(-angle / 2);
+            blackObjects[0].transform.rotation = Quaternion.AngleAxis(-(angle * (Time.deltaTime + timeSinceStart) / 2), Vector3.forward);
+            blackObjects[1].transform.rotation = Quaternion.AngleAxis(angle * (Time.deltaTime + timeSinceStart) / 2, Vector3.forward);
+            timeSinceStart += Time.deltaTime;
+            yield return null;
+        }
+        yield break;
+    }*/
 
     void OnTriggerEnter2D(Collider2D col)
     {

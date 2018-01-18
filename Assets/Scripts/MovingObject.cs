@@ -20,21 +20,4 @@ public class MovingObject : MonoBehaviour {
 	void Update () {
 		
 	}
-
-    public IEnumerator ChangeSpeedForTime(float speedFactor, float time)
-    {
-        currentSpeed *= speedFactor;
-        yield return new WaitForSeconds(time);
-        currentSpeed = m_MaxSpeed;
-    }
-
-    public IEnumerator ChangeSpeedForObstacle(float speedFactor, float time)
-    {
-        numOfSlowdowns++;
-        currentSpeed *= speedFactor;
-        yield return new WaitForSeconds(time);
-        numOfSlowdowns--;
-        if(numOfSlowdowns == 0)
-            currentSpeed = m_MaxSpeed;
-    }
 }

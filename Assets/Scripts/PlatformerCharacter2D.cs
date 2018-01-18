@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 //Unity Standard assets
 
@@ -18,6 +19,7 @@ public class PlatformerCharacter2D : MovingObject
     const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
     private Animator m_Anim;            // Reference to the player's animator component.
     public bool m_FacingRight = true;  // For determining which way the player is currently facing.
+    private PlayerScript player;
 
     Transform[] playerGraphics = new Transform[5];
 
@@ -136,10 +138,25 @@ public class PlatformerCharacter2D : MovingObject
         playerGraphics[playerGraphics.Length - 1].GetComponent<SpriteRenderer>().flipY = !playerGraphics[playerGraphics.Length - 1].GetComponent<SpriteRenderer>().flipY;
     }
 
+    public IEnumerator ChangeSpeedForTime(float speedFactor, float time)
+    {
+        player.ObstaclesAff++;
+        currentSpeed *= speedFactor;
+        yield return new WaitForSeconds(time);
+        player.ObstaclesAff--;
+        if (player.ObstaclesAff==0)
+            currentSpeed = m_MaxSpeed;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        CheckObstacle(collision);
+    }
+
     private void CheckObstacle(Collider2D collision)
     {
         float slowDownFactor = 0;
-        switch(collision.tag)
+        switch (collision.tag)
         {
             case "Bucket":
                 slowDownFactor = 0.25f;
@@ -158,13 +175,9 @@ public class PlatformerCharacter2D : MovingObject
         if (slowDownFactor != 0)
         {
             Destroy(collision.gameObject);
-            StartCoroutine(ChangeSpeedForObstacle(1 - slowDownFactor, 2f));
+            player.Lives--;
+            StartCoroutine(ChangeSpeedForTime(1 - slowDownFactor, 2f));
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        CheckObstacle(collision);
     }
 }
 
