@@ -1,5 +1,4 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 6625dae05121e3f49ab4060ea4ec2f68
 timeCreated: 1516228750
 licenseType: Free
@@ -9,13 +8,6 @@ TextureImporter:
     21300002: boost Armor Sprite Sheet _1
     21300004: boost Armor Sprite Sheet _2
     21300006: boost Armor Sprite Sheet _3
-=======
-guid: a7573845764d7134a8ee0cceb9bc2957
-timeCreated: 1516235137
-licenseType: Free
-TextureImporter:
-  fileIDToRecycleName: {}
->>>>>>> e4ca0259e4fcea319728ae27fd01eea53eaba247
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
