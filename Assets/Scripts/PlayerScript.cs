@@ -37,7 +37,7 @@ public class PlayerScript : MonoBehaviour {
 	{
 		if (Lives == 0)
 			Die("By running too much into obstacles, you have made your target aware of your presence.");
-		if (transform.position.y < -25.0f)
+		if (transform.position.y < -60.0f)
 			Die("You have fallen to your death.");
 	}
 

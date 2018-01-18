@@ -26,6 +26,7 @@ public class MovingObject : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (speedBoostDuration > 0)
+            speedBoostDuration -= Time.deltaTime;
 	}
 }
