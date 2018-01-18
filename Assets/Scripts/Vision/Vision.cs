@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class Vision : MonoBehaviour
 {
-    public float maxAngle = 360;
-    public float powerupCooldown = 0;
+    public float maxAngle;
+    public float powerupCooldown;		// Time in seconds
+	public float antagLostCooldown;		// Time in seconds
 
     public bool AntagFocused = false;
     public bool powerupFocused = false;
@@ -41,6 +42,23 @@ public class Vision : MonoBehaviour
 				{
 					playerScript.Flip();
 				}
+			}
+
+			// Powerups pickup
+			if (powerupFocused)
+			{
+				powerupCooldown -= Time.deltaTime;
+
+				if (powerupCooldown <= 0)
+				{
+
+				}
+			}
+
+			// Antag lost
+			if (!AntagFocused)
+			{
+
 			}
 		}
 
@@ -89,6 +107,7 @@ public class Vision : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         string tagname = col.gameObject.tag;
+
         if (tagname == "Antag")
         {
             AntagFocused = true;
@@ -96,6 +115,7 @@ public class Vision : MonoBehaviour
         else if (tagname == "PowerUps")
         {
             powerupFocused = true;
+
         }
     }
 
@@ -109,6 +129,7 @@ public class Vision : MonoBehaviour
         else if (tagname == "PowerUps")
         {
             powerupFocused = false;
+			powerupCooldown = 0;
         }
     }
 }
