@@ -8,6 +8,8 @@ public class Vision : MonoBehaviour
     public float maxAngle;
     public float powerupCooldown;		// Time in seconds
 	public float antagLostCooldown;		// Time in seconds
+    public float defaultAngle;
+    public float currentAngle;
 
     public bool AntagFocused = false;
     //public bool powerupFocused = false;
@@ -21,6 +23,8 @@ public class Vision : MonoBehaviour
 	private void Start()
     {
         playerScript = GetComponentInParent<PlatformerCharacter2D>();
+        defaultAngle = 100;
+        ChangeVisionAngle(defaultAngle);
     }
 
     void Update()
@@ -73,22 +77,19 @@ public class Vision : MonoBehaviour
 		}
 
     }
-
-    public void ChangeHitBoxVision(float angle)
+    
+    public void ChangeVisionAngle(float angle)
     {
         GameObject head = GameObject.Find("Head");
 
         head.GetComponent<PolygonCollider2D>().points = new Vector2[] { new Vector2(0, 0), new Vector2(8f, Convert.ToSingle((180 / Math.PI) * Mathf.Tan(angle / 2) * 8f)), new Vector2(8f, -(Convert.ToSingle((180 / Math.PI) * Mathf.Tan(angle / 2) * 8f))) };
-    }
-
-    public void ChangeVisionAngle(float angle)
-    {
-        ChangeHitBoxVision(angle);
 
         GameObject[] blackObjects = GameObject.FindGameObjectsWithTag("BlackObj");
 
         blackObjects[0].transform.rotation = Quaternion.AngleAxis(-(angle / 2), Vector3.forward);
         blackObjects[1].transform.rotation = Quaternion.AngleAxis(angle / 2, Vector3.forward);
+
+        currentAngle = angle;
     }
 
     /*public void ChangeVisionAngleSmooth(float angle)

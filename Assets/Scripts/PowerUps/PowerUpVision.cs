@@ -17,6 +17,14 @@ public class PowerUpVision : PowerUp {
 	public override void Collect(GameObject entity)
 	{
 		base.Collect(entity);
-		print("I can see you!");
+        Vision vision = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Vision>();
+        StartCoroutine(ChangeVisionForTime(vision, 15));
 	}
+
+    public IEnumerator ChangeVisionForTime(Vision vision, float time)
+    {
+        vision.ChangeVisionAngle(vision.defaultAngle + 30);
+        yield return new WaitForSeconds(time);
+        vision.ChangeVisionAngle(vision.defaultAngle);
+    }
 }
