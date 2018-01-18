@@ -75,7 +75,21 @@ public class PlatformerCharacter2D : MovingObject
 
         // Set the vertical animation
         m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
-    }
+
+		if (Input.GetKeyDown(KeyCode.P))
+		{
+			m_Anim.SetTrigger("DanceT");
+			m_Anim.SetBool("Dance", true);
+			print("started dancing");
+		}
+		if (Input.GetKeyUp(KeyCode.P))
+		{
+			m_Anim.SetBool("Dance", false);
+			print("stopped dancing");
+		}
+		/*if(Input.GetKeyDown(KeyCode.P))
+			m_Anim.SetTrigger("DanceT");*/
+	}
 
 
     public void Move(float move, bool crouch, bool jump)
@@ -94,10 +108,18 @@ public class PlatformerCharacter2D : MovingObject
         m_Anim.SetBool("Crouch", crouch);
 
         //only control the player if grounded or airControl is turned on
-        if (m_Grounded || m_AirControl)
+		if(m_Anim.GetBool("Dance"))
+		{
+			move = m_FacingRight ? -1 : 1;
+			m_Rigidbody2D.velocity = new Vector2(move/2 * currentSpeed, m_Rigidbody2D.velocity.y);
+		}
+        else if (m_Grounded || m_AirControl)
         {
             // Reduce the speed if crouching by the crouchSpeed multiplier
             move = (crouch ? move * m_CrouchSpeed : move);
+
+			if (SpeedBoostDuration > 0)
+				move *= 1.5f;
 
             // The Speed animator parameter is set to the absolute value of the horizontal input.
             m_Anim.SetFloat("Speed", Mathf.Abs(move));
@@ -107,7 +129,7 @@ public class PlatformerCharacter2D : MovingObject
 
         }
         // If the player should jump...
-        if (m_Grounded && jump && m_Anim.GetBool("Ground"))
+        if (m_Grounded && jump && m_Anim.GetBool("Ground") && !m_Anim.GetBool("Dance"))
         {
             // Add a vertical force to the player.
             m_Grounded = false;

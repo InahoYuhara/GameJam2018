@@ -23,6 +23,16 @@ public class PlayerScript : MonoBehaviour {
 		
 	}
 
+	public bool AddOneLife()
+	{
+		if (Lives < 3)
+		{
+			Lives++;
+			return true;
+		}
+		return false;
+	}
+
 	void DeathCheck()
 	{
 		if (Lives == 0)
@@ -31,7 +41,7 @@ public class PlayerScript : MonoBehaviour {
 			Die("You have fallen to your death.");
 	}
 
-	void Die(string reason)
+	public void Die(string reason)
 	{
 		DeathScreen screen = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<DeathScreen>();
 		ReasonText.text = reason;

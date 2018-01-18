@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DeathScreen : MonoBehaviour
 {
+	//private
+
 	public GameObject deathScreen;
 
 	void Start ()

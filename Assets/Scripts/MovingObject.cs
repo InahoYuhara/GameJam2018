@@ -9,6 +9,14 @@ public class MovingObject : MonoBehaviour {
     protected Rigidbody2D m_Rigidbody2D;
     private int numOfSlowdowns;
 
+	private float speedBoostDuration;
+
+	public float SpeedBoostDuration
+	{
+		get { return speedBoostDuration; }
+		set { speedBoostDuration = value; }
+	}
+
     // Use this for initialization
     void Start () {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();

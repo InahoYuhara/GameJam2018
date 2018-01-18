@@ -10,11 +10,15 @@ public class Vision : MonoBehaviour
 	public float antagLostCooldown;		// Time in seconds
 
     public bool AntagFocused = false;
-    public bool powerupFocused = false;
+    //public bool powerupFocused = false;
 
     private PlatformerCharacter2D playerScript;
+	private GameObject powerUp;
 
-    private void Start()
+	[SerializeField] private float powerUpPickupTime;
+	[SerializeField] private float targetLostMaxTime;
+
+	private void Start()
     {
         playerScript = GetComponentInParent<PlatformerCharacter2D>();
     }
@@ -45,21 +49,27 @@ public class Vision : MonoBehaviour
 			}
 
 			// Powerups pickup
-			if (powerupFocused)
+			if (powerUp != null)
 			{
-				powerupCooldown -= Time.deltaTime;
-
-				if (powerupCooldown <= 0)
+				powerupCooldown += Time.deltaTime;
+				//print(powerupCooldown);
+				if (powerupCooldown >= powerUpPickupTime)
 				{
-
+					powerUp.GetComponent<PowerUp>().Collect(this.transform.parent.gameObject);
+					powerUp = null;
+					powerupCooldown = 0;
 				}
 			}
 
 			// Antag lost
 			if (!AntagFocused)
 			{
-
+				antagLostCooldown += Time.deltaTime;
+				if (antagLostCooldown >= targetLostMaxTime)
+					playerScript.GetComponent<PlayerScript>().Die("You lost track of your target for too long.");
 			}
+			else
+				antagLostCooldown = 0;
 		}
 
     }
@@ -114,8 +124,8 @@ public class Vision : MonoBehaviour
         }
         else if (tagname == "PowerUps")
         {
-            powerupFocused = true;
-
+            //powerupFocused = true;
+			powerUp = col.gameObject;
         }
     }
 
@@ -128,8 +138,9 @@ public class Vision : MonoBehaviour
         }
         else if (tagname == "PowerUps")
         {
-            powerupFocused = false;
+            //powerupFocused = false;
 			powerupCooldown = 0;
+			powerUp = null;
         }
     }
 }

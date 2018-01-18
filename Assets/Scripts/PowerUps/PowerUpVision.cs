@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUp : MonoBehaviour {
+public class PowerUpVision : PowerUp {
 
 	// Use this for initialization
 	void Start () {
@@ -14,10 +14,9 @@ public class PowerUp : MonoBehaviour {
 		
 	}
 
-	public virtual void Collect(GameObject entity)
+	public override void Collect(GameObject entity)
 	{
-		print(entity.name + " collected me! (" + gameObject.name + ')');
-
-		gameObject.SetActive(false);
+		base.Collect(entity);
+		print("I can see you!");
 	}
 }
