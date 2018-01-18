@@ -147,6 +147,12 @@ public class PlatformerCharacter2D : MovingObject
             case "WetFloorSign":
                 slowDownFactor = 0.50f;
                 break;
+            case "Pony":
+                slowDownFactor = 0.50f;
+                break;
+            case "Mop":
+                slowDownFactor = 0.50f;
+                break;
         }
 
         if (slowDownFactor != 0)

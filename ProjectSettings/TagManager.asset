@@ -9,6 +9,8 @@ TagManager:
   - Bucket
   - WetFloorSign
   - PowerUps
+  - Pony
+  - Mop
   layers:
   - Default
   - TransparentFX
