@@ -43,7 +43,7 @@ public class Vision : MonoBehaviour
 
     }
 
-    public void changeVisionAngle(float angle)
+    public void ChangeVisionAngle(float angle)
     {
         GameObject head = GameObject.Find("Head");
 
