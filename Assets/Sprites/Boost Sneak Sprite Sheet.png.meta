@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 848bc25f087db2f4d9d9ce5860e1257c
-timeCreated: 1516228871
+guid: 0350e3bd2de526e48bdad9197b1ca528
+timeCreated: 1516228781
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: speed boost sprite sheet_0
-    21300002: speed boost sprite sheet_1
-    21300004: speed boost sprite sheet_2
-    21300006: speed boost sprite sheet_3
+    21300000: Boost Sneak Sprite Sheet_0
+    21300002: Boost Sneak Sprite Sheet_1
+    21300004: Boost Sneak Sprite Sheet_2
+    21300006: Boost Sneak Sprite Sheet_3
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -84,13 +84,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: speed boost sprite sheet_0
+      name: Boost Sneak Sprite Sheet_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 38
-        width: 20
-        height: 21
+        x: 4
+        y: 35
+        width: 23
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -98,13 +98,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: speed boost sprite sheet_1
+      name: Boost Sneak Sprite Sheet_1
       rect:
         serializedVersion: 2
-        x: 38
-        y: 38
-        width: 20
-        height: 21
+        x: 36
+        y: 35
+        width: 23
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,13 +112,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: speed boost sprite sheet_2
+      name: Boost Sneak Sprite Sheet_2
       rect:
         serializedVersion: 2
-        x: 6
-        y: 6
-        width: 20
-        height: 21
+        x: 4
+        y: 3
+        width: 23
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -126,13 +126,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: speed boost sprite sheet_3
+      name: Boost Sneak Sprite Sheet_3
       rect:
         serializedVersion: 2
-        x: 38
-        y: 6
-        width: 20
-        height: 21
+        x: 36
+        y: 3
+        width: 23
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
