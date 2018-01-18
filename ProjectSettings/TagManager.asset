@@ -11,6 +11,8 @@ TagManager:
   - PowerUps
   - Pony
   - Mop
+  - PauseUI
+  - DeathScreen
   layers:
   - Default
   - TransparentFX
@@ -62,4 +64,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2086605995
+    locked: 0
+  - name: UI
+    uniqueID: 3029142787
     locked: 0

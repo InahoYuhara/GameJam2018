@@ -19,14 +19,19 @@ public class PlatformerCharacter2D : MovingObject
     const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
     private Animator m_Anim;            // Reference to the player's animator component.
     public bool m_FacingRight = true;  // For determining which way the player is currently facing.
-    private PlayerScript player;
+    public PlayerScript player;
 
     Transform[] playerGraphics = new Transform[5];
 
-    private void Awake()
+	void Start()
+	{
+		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
+	}
+
+	private void Awake()
     {
-        // Setting up references.
-        m_GroundCheck = transform.Find("GroundCheck");
+		// Setting up references.
+		m_GroundCheck = transform.Find("GroundCheck");
         m_CeilingCheck = transform.Find("CeilingCheck");
         m_Anim = GetComponent<Animator>();
         m_Rigidbody2D = GetComponent<Rigidbody2D>();

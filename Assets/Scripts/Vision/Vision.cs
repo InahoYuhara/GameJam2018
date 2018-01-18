@@ -20,26 +20,29 @@ public class Vision : MonoBehaviour
 
     void Update()
     {
-        // Rotate the vision cone
-        Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
-        Vector3 dir = Input.mousePosition - pos;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+		// Rotate the vision cone if the game isn't paused
+		if (Time.timeScale > 0)
+		{
+			Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
+			Vector3 dir = Input.mousePosition - pos;
+			float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+			transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-        if (Math.Abs(angle) > 90)
-        {
-            if (playerScript.m_FacingRight)
-            {
-                playerScript.Flip();
-            }
-        }
-        else
-        {
-            if (!playerScript.m_FacingRight)
-            {
-                playerScript.Flip();
-            }
-        }
+			if (Math.Abs(angle) > 90)
+			{
+				if (playerScript.m_FacingRight)
+				{
+					playerScript.Flip();
+				}
+			}
+			else
+			{
+				if (!playerScript.m_FacingRight)
+				{
+					playerScript.Flip();
+				}
+			}
+		}
 
     }
 
